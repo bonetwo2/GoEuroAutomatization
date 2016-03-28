@@ -65,7 +65,6 @@ public abstract class Page {
                 e.printStackTrace();
             }
         }
-
         assertThat(browser.getCurrentUrl().contains(expectedPartURL), is(true));
     }
 
