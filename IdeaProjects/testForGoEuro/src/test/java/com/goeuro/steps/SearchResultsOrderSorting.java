@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by aviv on 18/03/16.
  */
-public class ResultOrderSorting extends Step {
+public class SearchResultsOrderSorting extends Step {
 
     @Autowired
     protected HomePage homePage;
