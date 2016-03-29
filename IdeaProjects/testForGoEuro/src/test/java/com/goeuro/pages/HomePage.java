@@ -3,6 +3,7 @@ package com.goeuro.pages;
 import com.goeuro.Bindings;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -33,16 +34,12 @@ public class HomePage extends Bindings {
 
 /// Methods ///
 
-    public void fillInSearchFields(String origin, String destination) {
+    public void fillInFieldsAndSearch(String origin, String destination) {
         type(originBox,origin);
         originBox.sendKeys(Keys.ENTER);
         type(destinationBox,destination);
         destinationBox.sendKeys(Keys.ENTER);
-        try {
-            Thread.sleep(4000);     // Needs a wait: Othewise fails to open
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        searchBtn.click();
+        Actions action = new Actions(browser);
+        action.doubleClick(searchBtn).perform();
     }
 }

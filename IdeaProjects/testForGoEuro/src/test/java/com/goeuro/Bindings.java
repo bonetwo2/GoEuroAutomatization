@@ -238,7 +238,7 @@ public class Bindings extends Page {
     }
 
     /**
-     * Returns the numerical value of each element in a list.
+     * Returns the numerical value of each element in a list and separates it form the currency.
      *
      * @param webElements list of web elements with text
      * @return list with the numbers of all web elements
@@ -249,7 +249,7 @@ public class Bindings extends Page {
             String element = "";
             for (WebElement webElement : webElements) {
                 element = webElement.getText();
-                if (!element.trim().equals("$")) {
+                if (!element.trim().contains("$")&&!element.trim().contains("€")) {
                     numbers.add(Integer.valueOf(element.trim()));
                 }
             }
@@ -260,11 +260,18 @@ public class Bindings extends Page {
         }
     }
 
-    protected ArrayList<Double> mergeLists(List<Integer> intsBeforeComa, List<Integer> intsAfterComa) {
+    /**
+     * combines the elements of two lists, in order to create a list with decimal values
+     *
+     * @param intsBeforeComma list of integers, representing the price in dollars or euros without cents
+     * @param intsAfterComma list of integers, representing the cents
+     * @return the list of the combined integers, resulting in the full prices
+     */
+
+    protected ArrayList<Double> mergeLists(List<Integer> intsBeforeComma, List<Integer> intsAfterComma) {
         ArrayList<Double> mergedList = new ArrayList<Double>();
-        for (int i = 0; i<intsBeforeComa.size();i++){
-            // Assume both lists of equal size
-            double res = intsBeforeComa.get(i) + (((double)intsAfterComa.get(i)/100));
+        for (int i = 0; i<intsBeforeComma.size();i++){
+            double res = intsBeforeComma.get(i) + (((double)intsAfterComma.get(i)/100));
             mergedList.add(res);
         }
 

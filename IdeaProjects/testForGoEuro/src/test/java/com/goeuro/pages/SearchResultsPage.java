@@ -6,10 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
+import org.hamcrest.Matchers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static org.junit.Assert.*;
+
 
 /**
  * Created by aviv on 18/03/16.
@@ -33,11 +36,22 @@ public class SearchResultsPage extends Bindings {
 
 
     /// Methods ///
+    public ArrayList<Double> priceList = null;
 
-    public ArrayList<Double> intsTrainPricesAfterComma() {
+    public void intsTrainPricesAfterComma() {
         java.util.List<Integer> intsTrainPricesBeforeComma = getNumbers(trainPricesBeforeComma);
         java.util.List<Integer> intsTrainPricesAfterComma = getNumbersDecimals(trainPricesAfterCommaWithCurrencySign);
-        return mergeLists(intsTrainPricesBeforeComma,intsTrainPricesAfterComma);
+        priceList = mergeLists(intsTrainPricesBeforeComma,intsTrainPricesAfterComma);
+    }
+
+
+    public void validateSorting() {
+        for (int i = 0; i<priceList.size()-1;i++){
+            if(priceList.get(i)>priceList.get(i+1)) {
+                fail("The prices should be sorted by from the cheapest to the most expensive");
+            }
+        }
+
     }
 
 
