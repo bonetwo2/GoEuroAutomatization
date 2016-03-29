@@ -221,6 +221,57 @@ public class Bindings extends Page {
     }
 
     /**
+     * Returns the numerical value of each element in a list.
+     *
+     * @param webElements list of web elements with text
+     * @return list with the numbers of all web elements
+     */
+    protected List<Integer> getNumbers(final List<WebElement> webElements) {
+        try {
+            ArrayList<Integer> numbers = new ArrayList<>();
+            webElements.forEach(e -> numbers.add(Integer.valueOf(e.getText())));
+            return numbers;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    /**
+     * Returns the numerical value of each element in a list.
+     *
+     * @param webElements list of web elements with text
+     * @return list with the numbers of all web elements
+     */
+    protected List<Integer> getNumbersDecimals(final List<WebElement> webElements) {
+        try {
+            ArrayList<Integer> numbers = new ArrayList<>();
+            String element = "";
+            for (WebElement webElement : webElements) {
+                element = webElement.getText();
+                if (!element.trim().equals("$")) {
+                    numbers.add(Integer.valueOf(element.trim()));
+                }
+            }
+            return numbers;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    protected ArrayList<Double> mergeLists(List<Integer> intsBeforeComa, List<Integer> intsAfterComa) {
+        ArrayList<Double> mergedList = new ArrayList<Double>();
+        for (int i = 0; i<intsBeforeComa.size();i++){
+            // Assume both lists of equal size
+            double res = intsBeforeComa.get(i) + (((double)intsAfterComa.get(i)/100));
+            mergedList.add(res);
+        }
+
+        return mergedList;
+    }
+
+    /**
      * Wait for element to appear and be in editable state and then click on the element.
      *
      * @param we locator of element to wait for
@@ -256,6 +307,8 @@ public class Bindings extends Page {
 
         return sdf.format(currentDate);
     }
+
+
 
 
 }

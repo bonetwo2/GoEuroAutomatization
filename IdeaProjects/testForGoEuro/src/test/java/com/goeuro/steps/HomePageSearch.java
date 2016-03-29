@@ -31,5 +31,11 @@ public class HomePageSearch extends Step {
     @Then("^I am on the search results page$")
     public void iAmOnTheSearchResultsPage() throws Throwable {
         searchResultsPage.verifyPageOpened();
+
+    }
+
+    @When("^I list the search result's prices$")
+    public void iListTheSearchResultSPrices() throws Throwable {
+        searchResultsPage.intsTrainPricesAfterComma();
     }
 }

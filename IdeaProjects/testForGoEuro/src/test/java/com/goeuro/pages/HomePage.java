@@ -39,7 +39,7 @@ public class HomePage extends Bindings {
         type(destinationBox,destination);
         destinationBox.sendKeys(Keys.ENTER);
         try {
-            Thread.sleep(3000);     // Needs a wait: Othewise fails to open
+            Thread.sleep(4000);     // Needs a wait: Othewise fails to open
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

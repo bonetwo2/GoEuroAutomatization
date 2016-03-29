@@ -14,8 +14,7 @@ So that the results shown to me are sorted by a selected category
 ### Scenarios ###
 
   Scenario: sort search results by price
-
- # When  I list the search result's prices
+   When  I list the search result's prices
 #  Then  the results should be ordered from the cheapest to the most expensive
 
 
